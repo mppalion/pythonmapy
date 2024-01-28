@@ -18,20 +18,20 @@ def ingreso_erroneo (ingreso):
     else:
         return True
 
-ingreso_erroneo(ingreso)
-
-def leer_receta ():
-    elegir = input("Elige la categoría que más te guste: ")
-    ruta =Path(Path(archivo).glob ("Recetas"))
+while ingreso_erroneo(ingreso) == True:
     
-"""    
-def Crear_Receta ():
-    
-def Crear_Categoria ():
+    def leer_receta ():
+        elegir = input("Elige la categoría que más te guste: ")
+        ruta =Path(Path(archivo).glob ("Recetas"))
+        
+    """    
+    def Crear_Receta ():
+        
+    def Crear_Categoria ():
 
-def Eliminar_Receta ():
+    def Eliminar_Receta ():
 
-def Eliminar_Categoria ():
+    def Eliminar_Categoria ():
 
 def Finalizar_Programa(ingreso,archivo):
     if ingreso == "6":
