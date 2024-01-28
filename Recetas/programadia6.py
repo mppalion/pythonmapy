@@ -19,7 +19,7 @@ def ingreso_erroneo (ingreso):
         return True
 
 while ingreso_erroneo(ingreso) == True:
-    
+
     def leer_receta ():
         elegir = input("Elige la categoría que más te guste: ")
         ruta =Path(Path(archivo).glob ("Recetas"))
