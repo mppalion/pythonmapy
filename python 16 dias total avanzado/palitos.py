@@ -1,4 +1,4 @@
-from random import shuffle
+jfrom random import shuffle
 
 palitos= ["-","--","---","----"]
 intento = 0
