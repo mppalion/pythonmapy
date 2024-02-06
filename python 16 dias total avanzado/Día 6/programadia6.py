@@ -4,8 +4,9 @@ from os import system
 ruta = Path(Path.home(), "Documents", "PythonMapy", "pythonmapy", "python 16 dias total avanzado","Día 6","Recetas")
 print(ruta)
 cantidad_recetas=8
-categorias = 4
+cantidad_categorias = 4
 actividad=True
+mensaje_volver_al_menu="\nIngrese alguna tecla para regresar al menú"
 print("Bienvenido al Recetario joven!!\n")
 
 def menu_principal (ruta,cantidad_recetas):
@@ -83,13 +84,13 @@ def crear_categoria (categorias,ruta):
     print(f"Se ha creado la nueva categoría {nueva_categoria} dentro de Recetas ")
     return menu_principal (ruta,cantidad_recetas)
 
-def eliminar_receta (cantidad_recetas):
-    print("Deseas crear una receta?")
-    categoria = input("Ingresa la categoria en la que estaría tu nueva receta: ")
-    nombre_de_receta=("Genial! Ahora ingresa el nombre de tu nueva receta: ")
+def eliminar_receta (cantidad_recetas,ruta,opcion):
+    print("Deseas eliminar una receta?")
+    categoria = input("Ingresa la categoria en la que estaría tu receta a eliminar: ")
+    nombre_de_receta=("Genial! Ahora ingresa el nombre de la receta a eliminar: ")
     system("cls")
-    print("Seleccionaste la opción de eliminar!")
-    confirmacionborrar = input(f"Deseas eliminar la receta {nombre_de_receta} ")
+    print("Seleccionaste la opción de eliminar esta receta!")
+    confirmacionborrar = input(f"Estás seguro que deseas eliminar la receta {nombre_de_receta}? y/n")
     confirmacionborrar = confirmacionborrar.lower()
     if confirmacionborrar == "n":
         opcion = ingresar_correcto(menu_principal (ruta,cantidad_recetas))
@@ -100,38 +101,55 @@ def eliminar_receta (cantidad_recetas):
     return (cantidad_recetas, menu_principal (ruta,cantidad_recetas))
 
 
+def eliminar_categoria(cantidad_categorias,opcion):
+    listar_categorias(ruta)
+    print("Deseas eliminar una categoria?")
+    opcion_categoria = input("Elige la categoría que desees eliminar: ")
+    ruta_categoria =Path(ruta,opcion_categoria)
+    system("cls")
+    confirmacionborrar = input(f"Estás seguro que deseas eliminar la categoria {opcion_categoria}? y/n")
+    confirmacionborrar = confirmacionborrar.lower()
+    if confirmacionborrar == "n":
+        opcion = ingresar_correcto(menu_principal (ruta,cantidad_recetas))
+    else:
+        cantidad_categorias=cantidad_categorias-1
+        #REMOVER CATEGORIA ruta.rmdir
+        print("La categoría ha sido eliminada permanentemente")
+    return True
+
+
 
 while actividad==True:
     opcion = ingresar_correcto(menu_principal (ruta,cantidad_recetas))
     if opcion == 1:
         system("cls") 
         leer_receta (ruta)
-        input("\nIngrese alguna tecla para regresar al menú")
+        input(mensaje_volver_al_menu)
     elif opcion == 2:
         system("cls") 
-        crear_receta(ruta)
-        input("\nIngrese alguna tecla para regresar al menú")
+        crear_receta(cantidad_recetas,ruta)
+        input(mensaje_volver_al_menu)
     elif opcion == 3:
         system("cls")        
-        crear_categoria(categorias,ruta)
-        input("\nIngrese alguna tecla para regresar al menú")
+        crear_categoria(cantidad_categorias,ruta)
+        input(mensaje_volver_al_menu)
     elif opcion == 4:
         system("cls")
-        eliminar_receta ()
-        input("\nIngrese alguna tecla para regresar al menú")
+        eliminar_receta (cantidad_recetas,ruta,opcion)
+        input(mensaje_volver_al_menu)
     elif opcion == 5:
         system("cls")
-        eliminar_categoria (categorias,ruta)
-        input("\nIngrese alguna tecla para regresar al menú")
+        eliminar_categoria (cantidad_categorias,ruta,opcion)
+        input(mensaje_volver_al_menu)
     elif opcion == 6:
         system("cls")
         listar_recetas(ruta)
-        input("\nIngrese alguna tecla para regresar al menú")
+        input(mensaje_volver_al_menu)
     elif opcion == 7:
         system("cls")
         for elemento in ruta.glob("*/**"):
             print(elemento.stem)
-        input("\nIngrese alguna tecla para regresar al menú")
+        input(mensaje_volver_al_menu)
     else:
         opcion = ingresar_correcto(menu_principal (ruta,cantidad_recetas))
     if opcion == 8:
